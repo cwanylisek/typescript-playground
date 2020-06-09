@@ -90,3 +90,10 @@ let playerTwo: {
 playerTwo = { name: 'Rafal', belt: 'green', age: 12 };
 
 console.log(playerTwo);
+
+let myAge: any = 26; // basically makes no sense using it if we want to have TS functionality
+console.log(myAge)
+
+myAge = { name: 'Kilian', age: 20 };
+
+console.log(myAge);
