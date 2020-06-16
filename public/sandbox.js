@@ -1,3 +1,4 @@
+"use strict";
 var footballer = 'lewandowski';
 var age = 31;
 var isInjured = false;
@@ -30,7 +31,7 @@ console.log(ninja);
 ninja = {
     name: 'yoshi',
     belt: 'orange',
-    age: 56
+    age: 56,
 };
 // EXPLICIT TYPES
 var player;
@@ -61,3 +62,56 @@ var myAge = 26; // basically makes no sense using it if we want to have TS funct
 console.log(myAge);
 myAge = { name: 'Kilian', age: 20 };
 console.log(myAge);
+// FUNCTIONS
+var greet;
+greet = function () {
+    console.log('yo yo');
+};
+greet();
+var add = function (a, b, c) {
+    if (c === void 0) { c = 10; }
+    console.log(a + b);
+    console.log(c);
+};
+add(2, 3, '3');
+var minus = function (a, b) {
+    return a - b;
+};
+var result = minus(27, 7);
+console.log(result);
+var logDetails = function (uid, item) {
+    console.log(item + " has a uid of " + uid);
+};
+logDetails(2, "Bartek");
+var userDetails = function (user) {
+    console.log("hello " + user.name + " you have " + user.uid + " id");
+};
+userDetails({ name: 'Bartek', uid: 2 });
+// FUNCTION SIGNATURES
+//1
+var welcome;
+welcome = function (name, greeting) {
+    console.log(name + " says " + greeting);
+};
+welcome('Yannick', 'Witaj');
+//2
+var calc;
+calc = function (numOne, numTwo, action) {
+    if (action === 'add') {
+        return numOne + numTwo;
+    }
+    else {
+        return numOne - numTwo;
+    }
+};
+console.log(calc(3, 33, 'add'));
+//3
+var loggingDetails;
+loggingDetails = function (user) {
+    console.log(user.name + " is " + user.age + " years old");
+};
+var usr = {
+    name: "Rafal",
+    age: 40
+};
+loggingDetails(usr);

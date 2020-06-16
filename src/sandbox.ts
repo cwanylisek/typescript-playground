@@ -97,3 +97,87 @@ console.log(myAge)
 myAge = { name: 'Kilian', age: 20 };
 
 console.log(myAge);
+
+// FUNCTIONS
+
+let greet: Function;
+
+greet = () => {
+    console.log('yo yo');
+};
+greet();
+
+const add = (a: number, b: number, c: number | string = 10) => { // c? == parameter is optional | like this its going to = 10 if not specified
+    console.log(a + b);
+    console.log(c);
+}
+
+add(2, 3, '3');
+
+const minus = (a: number, b: number) => {
+    return a - b;
+}
+
+let result = minus(27, 7);
+
+console.log(result);
+
+// TYPE ALIASES
+// to prevent building complex type declarations in functions etc.
+
+type StringOrNum = string | number;
+type objWithName = { name: string, uid: StringOrNum };
+
+const logDetails = (uid: StringOrNum, item: string) => {
+    console.log(`${item} has a uid of ${uid}`);
+}
+
+logDetails(2, "Bartek");
+
+const userDetails = (user: objWithName) => {
+    console.log(`hello ${user.name} you have ${user.uid} id`);
+}
+
+userDetails({ name: 'Bartek', uid: 2 });
+
+// FUNCTION SIGNATURES
+//1
+
+let welcome: (a: string, b: string) => void;
+
+welcome = (name: string, greeting: string) => {
+    console.log(`${name} says ${greeting}`);
+}
+
+welcome('Yannick', 'Witaj');
+
+//2
+
+let calc: (a: number, b: number, c: string) => number;
+
+calc = (numOne: number, numTwo: number, action: string) => {
+    if (action === 'add') {
+        return numOne + numTwo
+    } else {
+        return numOne - numTwo
+    }
+}
+
+console.log(calc(3, 33, 'add'))
+
+//3
+
+let loggingDetails: (objectOne: { name: string, age: number }) => void;
+
+type person = { name: string, age: number };
+
+loggingDetails = (user: person) => {
+    console.log(`${user.name} is ${user.age} years old`);
+}
+
+let usr = {
+    name: "Rafal",
+    age: 40
+}
+
+loggingDetails(usr);
