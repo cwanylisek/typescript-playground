@@ -1,20 +1,20 @@
 import { Invoice } from './modules/Invoice.js';
+import { Payment } from './modules/Payment.js';
+import { ListTemplate } from './modules/ListTemplate.js';
 const form = document.querySelector('.new-item-form');
-console.log(form.tagName);
 // grab inputs
 const type = document.querySelector('#type');
 const toFrom = document.querySelector('#tofrom');
 const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
+// list template
+const ul = document.querySelector('ul');
+const list = new ListTemplate(ul);
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('submitted', type.value, toFrom.value, details.value, amount.valueAsNumber);
-});
-const invOne = new Invoice('mario', 'work on the mario website', 250);
-const invTwo = new Invoice('luigi', 'work on the mario website', 300);
-let invoices = [];
-invoices.push(invOne);
-invoices.push(invTwo);
-invoices.forEach(inv => {
-    console.log(inv.format());
+    let doc;
+    type.value === 'invoice' ?
+        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber) :
+        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+    list.render(doc, type.value, 'end');
 });
